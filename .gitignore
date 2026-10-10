@@ -39,8 +39,12 @@ lerna-debug.log*
 .env.*
 !.env.example
 
-# Source material for the docs (zip + duplicates); the real docs live in docs/
+# Local-only working docs: the README is the single public document.
 files/
+docs/
+CLAUDE.md
+CONTRIBUTING.md
+CREDITS.md
 
 # Editors
 .vscode/*
