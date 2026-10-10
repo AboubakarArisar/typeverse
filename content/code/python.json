@@ -1,0 +1,78 @@
+{
+  "id": "python",
+  "name": "Python",
+  "license": "MIT (original snippets written for Typeverse)",
+  "snippets": [
+    {
+      "id": "py-average",
+      "difficulty": "beginner",
+      "lines": [
+        "def average(values):",
+        "    if not values:",
+        "        return 0.0",
+        "    return sum(values) / len(values)"
+      ]
+    },
+    {
+      "id": "py-count",
+      "difficulty": "beginner",
+      "lines": [
+        "counts = {}",
+        "for word in words:",
+        "    counts[word] = counts.get(word, 0) + 1",
+        "print(counts)"
+      ]
+    },
+    {
+      "id": "py-class",
+      "difficulty": "intermediate",
+      "lines": [
+        "class Timer:",
+        "    def __init__(self, label):",
+        "        self.label = label",
+        "        self.elapsed = 0.0",
+        "",
+        "    def tick(self, dt):",
+        "        self.elapsed += dt",
+        "        return self.elapsed"
+      ]
+    },
+    {
+      "id": "py-comprehension",
+      "difficulty": "intermediate",
+      "lines": [
+        "pairs = [(name, len(name)) for name in names if name]",
+        "longest = max(pairs, key=lambda pair: pair[1], default=None)",
+        "print(f\"longest: {longest}\")"
+      ]
+    },
+    {
+      "id": "py-context",
+      "difficulty": "advanced",
+      "lines": [
+        "from contextlib import contextmanager",
+        "",
+        "@contextmanager",
+        "def swallow(*errors):",
+        "    try:",
+        "        yield",
+        "    except errors as err:",
+        "        print(f\"ignored: {err!r}\")"
+      ]
+    },
+    {
+      "id": "py-dataclass",
+      "difficulty": "advanced",
+      "lines": [
+        "@dataclass(frozen=True, slots=True)",
+        "class Result:",
+        "    wpm: float",
+        "    accuracy: float",
+        "",
+        "    @property",
+        "    def grade(self) -> str:",
+        "        return \"A\" if self.accuracy >= 0.97 else \"B\""
+      ]
+    }
+  ]
+}

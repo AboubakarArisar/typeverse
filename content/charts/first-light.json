@@ -1,0 +1,297 @@
+{
+  "id": "first-light",
+  "title": "First Light",
+  "bpm": 92,
+  "offsetMs": 1500,
+  "license": "CC0-1.0 (original chart, synthesized backing)",
+  "notes": [
+    {
+      "beat": 0.0,
+      "char": "t"
+    },
+    {
+      "beat": 1.0,
+      "char": "h"
+    },
+    {
+      "beat": 2.0,
+      "char": "e"
+    },
+    {
+      "beat": 4.0,
+      "char": "q"
+    },
+    {
+      "beat": 5.0,
+      "char": "u"
+    },
+    {
+      "beat": 6.0,
+      "char": "i"
+    },
+    {
+      "beat": 7.0,
+      "char": "e"
+    },
+    {
+      "beat": 8.0,
+      "char": "t"
+    },
+    {
+      "beat": 10.0,
+      "char": "k"
+    },
+    {
+      "beat": 11.0,
+      "char": "e"
+    },
+    {
+      "beat": 12.0,
+      "char": "y"
+    },
+    {
+      "beat": 13.0,
+      "char": "s"
+    },
+    {
+      "beat": 16.0,
+      "char": "t"
+    },
+    {
+      "beat": 17.0,
+      "char": "h"
+    },
+    {
+      "beat": 18.0,
+      "char": "e"
+    },
+    {
+      "beat": 20.0,
+      "char": "q"
+    },
+    {
+      "beat": 21.0,
+      "char": "u"
+    },
+    {
+      "beat": 22.0,
+      "char": "i"
+    },
+    {
+      "beat": 23.0,
+      "char": "e"
+    },
+    {
+      "beat": 24.0,
+      "char": "t"
+    },
+    {
+      "beat": 26.0,
+      "char": "k"
+    },
+    {
+      "beat": 27.0,
+      "char": "e"
+    },
+    {
+      "beat": 28.0,
+      "char": "y"
+    },
+    {
+      "beat": 29.0,
+      "char": "s"
+    },
+    {
+      "beat": 32.0,
+      "char": "t"
+    },
+    {
+      "beat": 33.0,
+      "char": "h"
+    },
+    {
+      "beat": 34.0,
+      "char": "e"
+    },
+    {
+      "beat": 36.0,
+      "char": "q"
+    },
+    {
+      "beat": 37.0,
+      "char": "u"
+    },
+    {
+      "beat": 38.0,
+      "char": "i"
+    },
+    {
+      "beat": 39.0,
+      "char": "e"
+    },
+    {
+      "beat": 40.0,
+      "char": "t"
+    },
+    {
+      "beat": 42.0,
+      "char": "k"
+    },
+    {
+      "beat": 43.0,
+      "char": "e"
+    },
+    {
+      "beat": 44.0,
+      "char": "y"
+    },
+    {
+      "beat": 45.0,
+      "char": "s"
+    },
+    {
+      "beat": 48.0,
+      "char": "t"
+    },
+    {
+      "beat": 49.0,
+      "char": "h"
+    },
+    {
+      "beat": 50.0,
+      "char": "e"
+    },
+    {
+      "beat": 52.0,
+      "char": "q"
+    },
+    {
+      "beat": 53.0,
+      "char": "u"
+    },
+    {
+      "beat": 54.0,
+      "char": "i"
+    },
+    {
+      "beat": 55.0,
+      "char": "e"
+    },
+    {
+      "beat": 56.0,
+      "char": "t"
+    },
+    {
+      "beat": 58.0,
+      "char": "k"
+    },
+    {
+      "beat": 59.0,
+      "char": "e"
+    },
+    {
+      "beat": 60.0,
+      "char": "y"
+    },
+    {
+      "beat": 61.0,
+      "char": "s"
+    },
+    {
+      "beat": 64.0,
+      "char": "t"
+    },
+    {
+      "beat": 65.0,
+      "char": "h"
+    },
+    {
+      "beat": 66.0,
+      "char": "e"
+    },
+    {
+      "beat": 68.0,
+      "char": "q"
+    },
+    {
+      "beat": 69.0,
+      "char": "u"
+    },
+    {
+      "beat": 70.0,
+      "char": "i"
+    },
+    {
+      "beat": 71.0,
+      "char": "e"
+    },
+    {
+      "beat": 72.0,
+      "char": "t"
+    },
+    {
+      "beat": 74.0,
+      "char": "k"
+    },
+    {
+      "beat": 75.0,
+      "char": "e"
+    },
+    {
+      "beat": 76.0,
+      "char": "y"
+    },
+    {
+      "beat": 77.0,
+      "char": "s"
+    },
+    {
+      "beat": 80.0,
+      "char": "t"
+    },
+    {
+      "beat": 81.0,
+      "char": "h"
+    },
+    {
+      "beat": 82.0,
+      "char": "e"
+    },
+    {
+      "beat": 84.0,
+      "char": "q"
+    },
+    {
+      "beat": 85.0,
+      "char": "u"
+    },
+    {
+      "beat": 86.0,
+      "char": "i"
+    },
+    {
+      "beat": 87.0,
+      "char": "e"
+    },
+    {
+      "beat": 88.0,
+      "char": "t"
+    },
+    {
+      "beat": 90.0,
+      "char": "k"
+    },
+    {
+      "beat": 91.0,
+      "char": "e"
+    },
+    {
+      "beat": 92.0,
+      "char": "y"
+    },
+    {
+      "beat": 93.0,
+      "char": "s"
+    }
+  ]
+}

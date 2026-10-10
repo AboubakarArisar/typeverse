@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Typeverse">
+  <rect width="800" height="500" fill="#FFF4E0"/>
+  <g font-family="Space Grotesk, Segoe UI, sans-serif" font-weight="700" font-size="64" text-anchor="middle" fill="#0B0F1E">
+    <g transform="rotate(-6 216 204)"><rect x="164" y="164" width="104" height="104" rx="22" fill="#2F5BC9"/><rect x="164" y="152" width="104" height="104" rx="22" fill="#5B8CFF"/><text x="216" y="226">T</text></g>
+    <g transform="rotate(4 338 194)"><rect x="286" y="154" width="104" height="104" rx="22" fill="#C9601F"/><rect x="286" y="142" width="104" height="104" rx="22" fill="#FF8A3D"/><text x="338" y="216">Y</text></g>
+    <g transform="rotate(-3 460 204)"><rect x="408" y="164" width="104" height="104" rx="22" fill="#3FBF93"/><rect x="408" y="152" width="104" height="104" rx="22" fill="#7CF5C8"/><text x="460" y="226">P</text></g>
+    <g transform="rotate(6 582 198)"><rect x="530" y="158" width="104" height="104" rx="22" fill="#8FB51C"/><rect x="530" y="146" width="104" height="104" rx="22" fill="#C6F432"/><text x="582" y="220">E</text></g>
+  </g>
+  <rect x="188" y="318" width="60" height="4" rx="2" fill="#0B0F1E"/>
+  <rect x="552" y="318" width="60" height="4" rx="2" fill="#0B0F1E"/>
+  <text x="411" y="336" font-family="JetBrains Mono, Consolas, monospace" font-weight="800" font-size="46" letter-spacing="22" text-anchor="middle" fill="#0B0F1E">VERSE</text>
+</svg>

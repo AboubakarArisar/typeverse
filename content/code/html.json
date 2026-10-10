@@ -1,0 +1,70 @@
+{
+  "id": "html",
+  "name": "HTML / CSS",
+  "license": "MIT (original snippets written for Typeverse)",
+  "snippets": [
+    {
+      "id": "html-card",
+      "difficulty": "beginner",
+      "lines": [
+        "<article class=\"card\">",
+        "  <h2>Word Rain</h2>",
+        "  <p>Stop the words before they land.</p>",
+        "</article>"
+      ]
+    },
+    {
+      "id": "css-tokens",
+      "difficulty": "beginner",
+      "lines": [
+        ":root {",
+        "  --key-blue: #5B8CFF;",
+        "  --radius-key: 22%;",
+        "}"
+      ]
+    },
+    {
+      "id": "css-grid",
+      "difficulty": "intermediate",
+      "lines": [
+        ".arcade {",
+        "  display: grid;",
+        "  grid-template-columns: repeat(4, minmax(0, 1fr));",
+        "  gap: var(--space-4);",
+        "}"
+      ]
+    },
+    {
+      "id": "html-form",
+      "difficulty": "intermediate",
+      "lines": [
+        "<label for=\"speed\">Speed</label>",
+        "<input id=\"speed\" type=\"range\" min=\"0\" max=\"100\" step=\"5\" />",
+        "<output for=\"speed\">50</output>"
+      ]
+    },
+    {
+      "id": "css-keycap",
+      "difficulty": "advanced",
+      "lines": [
+        ".keycap:active {",
+        "  transform: translateY(var(--depth));",
+        "  box-shadow: 0 0 0 var(--side);",
+        "  transition-duration: var(--dur-press);",
+        "}"
+      ]
+    },
+    {
+      "id": "css-media",
+      "difficulty": "advanced",
+      "lines": [
+        "@media (prefers-reduced-motion: reduce) {",
+        "  *, *::before, *::after {",
+        "    animation-duration: 0.01ms !important;",
+        "    transition-duration: 0.01ms !important;",
+        "  }",
+        "}"
+      ]
+    }
+  ]
+}

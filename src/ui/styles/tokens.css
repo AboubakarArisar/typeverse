@@ -1,0 +1,185 @@
+/* Typeverse design tokens — "Arcade Keycaps". See docs/DESIGN_SYSTEM.md */
+
+:root {
+  /* Keycap palette (from the logo) */
+  --key-blue: #5b8cff;
+  --key-blue-side: #2f5bc9;
+  --key-orange: #ff8a3d;
+  --key-orange-side: #c9601f;
+  --key-mint: #7cf5c8;
+  --key-mint-side: #3fbf93;
+  --key-lime: #c6f432;
+  --key-lime-side: #8fb51c;
+
+  /* Neutrals — light theme (default) */
+  --bg: #fff4e0;
+  --surface: #ffffff;
+  --surface-sunk: #f5e8cf;
+  --ink: #0b0f1e;
+  --ink-muted: #4a4f63;
+  --line: #e4d6bb;
+  --on-key: #0b0f1e;
+  --error: #e5484d;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+  --fs-hero: 4rem;
+  --fs-h1: 2.5rem;
+  --fs-h2: 1.75rem;
+  --fs-game: calc(1.75rem * var(--font-scale, 1));
+  --fs-body: 1rem;
+  --fs-label: 0.8125rem;
+  --tracking-label: 0.2em;
+
+  /* Spacing (8px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+
+  /* Shape and depth */
+  --radius-key: 22%;
+  --radius-panel: 20px;
+  --radius-pill: 999px;
+  --depth-1: 6px;
+  --depth-2: 12px;
+
+  /* Motion */
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-press: 60ms;
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+
+  color-scheme: light;
+}
+
+/* Dark theme: follows the OS unless the user picked light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0b0f1e;
+    --surface: #161b2e;
+    --surface-sunk: #0f1426;
+    --ink: #fff4e0;
+    --ink-muted: #aeb3c7;
+    --line: #2a3150;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #0b0f1e;
+  --surface: #161b2e;
+  --surface-sunk: #0f1426;
+  --ink: #fff4e0;
+  --ink-muted: #aeb3c7;
+  --line: #2a3150;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 100ms;
+    --ease-pop: ease-out;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-body);
+}
+
+/* ---------- Keycap ---------- */
+.keycap {
+  --face: var(--key-blue);
+  --side: var(--key-blue-side);
+  --depth: var(--depth-2);
+  display: inline-grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: var(--radius-key);
+  background: var(--face);
+  color: var(--on-key);
+  font-family: var(--font-display);
+  font-weight: 700;
+  box-shadow: 0 var(--depth) 0 var(--side);
+  transform: translateY(0) rotate(var(--tilt, 0deg));
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+  cursor: pointer;
+}
+.keycap--orange {
+  --face: var(--key-orange);
+  --side: var(--key-orange-side);
+}
+.keycap--mint {
+  --face: var(--key-mint);
+  --side: var(--key-mint-side);
+}
+.keycap--lime {
+  --face: var(--key-lime);
+  --side: var(--key-lime-side);
+}
+.keycap--sm {
+  --depth: var(--depth-1);
+}
+
+.keycap:hover {
+  transform: translateY(-2px) rotate(calc(var(--tilt, 0deg) / 2));
+  box-shadow: 0 calc(var(--depth) + 2px) 0 var(--side);
+}
+.keycap:active {
+  transform: translateY(var(--depth));
+  box-shadow: 0 0 0 var(--side);
+  transition-duration: var(--dur-press);
+}
+.keycap:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.keycap[aria-disabled='true'] {
+  --face: var(--line);
+  --side: var(--line);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ---------- Section label: "— V E R S E —" ---------- */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.section-label::before,
+.section-label::after {
+  content: '';
+  inline-size: 2.5em;
+  block-size: 3px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+/* ---------- Panel ---------- */
+.panel {
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-panel);
+  box-shadow: 0 var(--depth-1) 0 var(--line);
+  padding: var(--space-4);
+}

@@ -1,0 +1,361 @@
+{
+  "id": "paper-rain",
+  "title": "Paper Rain",
+  "bpm": 112,
+  "offsetMs": 1500,
+  "license": "CC0-1.0 (original chart, synthesized backing)",
+  "notes": [
+    {
+      "beat": 0.0,
+      "char": "r"
+    },
+    {
+      "beat": 0.5,
+      "char": "a"
+    },
+    {
+      "beat": 1.0,
+      "char": "i"
+    },
+    {
+      "beat": 1.5,
+      "char": "n"
+    },
+    {
+      "beat": 2.5,
+      "char": "o"
+    },
+    {
+      "beat": 3.0,
+      "char": "n"
+    },
+    {
+      "beat": 4.0,
+      "char": "p"
+    },
+    {
+      "beat": 4.5,
+      "char": "a"
+    },
+    {
+      "beat": 5.0,
+      "char": "p"
+    },
+    {
+      "beat": 5.5,
+      "char": "e"
+    },
+    {
+      "beat": 6.0,
+      "char": "r"
+    },
+    {
+      "beat": 7.5,
+      "char": "r"
+    },
+    {
+      "beat": 8.0,
+      "char": "a"
+    },
+    {
+      "beat": 8.5,
+      "char": "i"
+    },
+    {
+      "beat": 9.0,
+      "char": "n"
+    },
+    {
+      "beat": 10.0,
+      "char": "o"
+    },
+    {
+      "beat": 10.5,
+      "char": "n"
+    },
+    {
+      "beat": 11.5,
+      "char": "p"
+    },
+    {
+      "beat": 12.0,
+      "char": "a"
+    },
+    {
+      "beat": 12.5,
+      "char": "p"
+    },
+    {
+      "beat": 13.0,
+      "char": "e"
+    },
+    {
+      "beat": 13.5,
+      "char": "r"
+    },
+    {
+      "beat": 15.0,
+      "char": "r"
+    },
+    {
+      "beat": 15.5,
+      "char": "a"
+    },
+    {
+      "beat": 16.0,
+      "char": "i"
+    },
+    {
+      "beat": 16.5,
+      "char": "n"
+    },
+    {
+      "beat": 17.5,
+      "char": "o"
+    },
+    {
+      "beat": 18.0,
+      "char": "n"
+    },
+    {
+      "beat": 19.0,
+      "char": "p"
+    },
+    {
+      "beat": 19.5,
+      "char": "a"
+    },
+    {
+      "beat": 20.0,
+      "char": "p"
+    },
+    {
+      "beat": 20.5,
+      "char": "e"
+    },
+    {
+      "beat": 21.0,
+      "char": "r"
+    },
+    {
+      "beat": 22.5,
+      "char": "r"
+    },
+    {
+      "beat": 23.0,
+      "char": "a"
+    },
+    {
+      "beat": 23.5,
+      "char": "i"
+    },
+    {
+      "beat": 24.0,
+      "char": "n"
+    },
+    {
+      "beat": 25.0,
+      "char": "o"
+    },
+    {
+      "beat": 25.5,
+      "char": "n"
+    },
+    {
+      "beat": 26.5,
+      "char": "p"
+    },
+    {
+      "beat": 27.0,
+      "char": "a"
+    },
+    {
+      "beat": 27.5,
+      "char": "p"
+    },
+    {
+      "beat": 28.0,
+      "char": "e"
+    },
+    {
+      "beat": 28.5,
+      "char": "r"
+    },
+    {
+      "beat": 30.0,
+      "char": "r"
+    },
+    {
+      "beat": 30.5,
+      "char": "a"
+    },
+    {
+      "beat": 31.0,
+      "char": "i"
+    },
+    {
+      "beat": 31.5,
+      "char": "n"
+    },
+    {
+      "beat": 32.5,
+      "char": "o"
+    },
+    {
+      "beat": 33.0,
+      "char": "n"
+    },
+    {
+      "beat": 34.0,
+      "char": "p"
+    },
+    {
+      "beat": 34.5,
+      "char": "a"
+    },
+    {
+      "beat": 35.0,
+      "char": "p"
+    },
+    {
+      "beat": 35.5,
+      "char": "e"
+    },
+    {
+      "beat": 36.0,
+      "char": "r"
+    },
+    {
+      "beat": 37.5,
+      "char": "r"
+    },
+    {
+      "beat": 38.0,
+      "char": "a"
+    },
+    {
+      "beat": 38.5,
+      "char": "i"
+    },
+    {
+      "beat": 39.0,
+      "char": "n"
+    },
+    {
+      "beat": 40.0,
+      "char": "o"
+    },
+    {
+      "beat": 40.5,
+      "char": "n"
+    },
+    {
+      "beat": 41.5,
+      "char": "p"
+    },
+    {
+      "beat": 42.0,
+      "char": "a"
+    },
+    {
+      "beat": 42.5,
+      "char": "p"
+    },
+    {
+      "beat": 43.0,
+      "char": "e"
+    },
+    {
+      "beat": 43.5,
+      "char": "r"
+    },
+    {
+      "beat": 45.0,
+      "char": "r"
+    },
+    {
+      "beat": 45.5,
+      "char": "a"
+    },
+    {
+      "beat": 46.0,
+      "char": "i"
+    },
+    {
+      "beat": 46.5,
+      "char": "n"
+    },
+    {
+      "beat": 47.5,
+      "char": "o"
+    },
+    {
+      "beat": 48.0,
+      "char": "n"
+    },
+    {
+      "beat": 49.0,
+      "char": "p"
+    },
+    {
+      "beat": 49.5,
+      "char": "a"
+    },
+    {
+      "beat": 50.0,
+      "char": "p"
+    },
+    {
+      "beat": 50.5,
+      "char": "e"
+    },
+    {
+      "beat": 51.0,
+      "char": "r"
+    },
+    {
+      "beat": 52.5,
+      "char": "r"
+    },
+    {
+      "beat": 53.0,
+      "char": "a"
+    },
+    {
+      "beat": 53.5,
+      "char": "i"
+    },
+    {
+      "beat": 54.0,
+      "char": "n"
+    },
+    {
+      "beat": 55.0,
+      "char": "o"
+    },
+    {
+      "beat": 55.5,
+      "char": "n"
+    },
+    {
+      "beat": 56.5,
+      "char": "p"
+    },
+    {
+      "beat": 57.0,
+      "char": "a"
+    },
+    {
+      "beat": 57.5,
+      "char": "p"
+    },
+    {
+      "beat": 58.0,
+      "char": "e"
+    },
+    {
+      "beat": 58.5,
+      "char": "r"
+    }
+  ]
+}

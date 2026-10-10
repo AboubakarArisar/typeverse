@@ -1,0 +1,86 @@
+{
+  "id": "javascript",
+  "name": "JavaScript",
+  "license": "MIT (original snippets written for Typeverse)",
+  "snippets": [
+    {
+      "id": "js-sum",
+      "difficulty": "beginner",
+      "lines": [
+        "function sum(numbers) {",
+        "  let total = 0;",
+        "  for (const n of numbers) {",
+        "    total += n;",
+        "  }",
+        "  return total;",
+        "}"
+      ]
+    },
+    {
+      "id": "js-greet",
+      "difficulty": "beginner",
+      "lines": [
+        "const greet = (name) => {",
+        "  return `Hello, ${name}!`;",
+        "};",
+        "",
+        "console.log(greet('world'));"
+      ]
+    },
+    {
+      "id": "js-debounce",
+      "difficulty": "intermediate",
+      "lines": [
+        "function debounce(fn, waitMs) {",
+        "  let timer = 0;",
+        "  return (...args) => {",
+        "    clearTimeout(timer);",
+        "    timer = setTimeout(() => fn(...args), waitMs);",
+        "  };",
+        "}"
+      ]
+    },
+    {
+      "id": "js-group",
+      "difficulty": "intermediate",
+      "lines": [
+        "function groupBy(items, keyOf) {",
+        "  const out = new Map();",
+        "  for (const item of items) {",
+        "    const key = keyOf(item);",
+        "    const bucket = out.get(key) ?? [];",
+        "    bucket.push(item);",
+        "    out.set(key, bucket);",
+        "  }",
+        "  return out;",
+        "}"
+      ]
+    },
+    {
+      "id": "js-pipe",
+      "difficulty": "advanced",
+      "lines": [
+        "const pipe = (...fns) => (x) => fns.reduce((v, f) => f(v), x);",
+        "const clamp = (lo, hi) => (n) => Math.min(hi, Math.max(lo, n));",
+        "const round2 = (n) => Math.round(n * 100) / 100;",
+        "export const score = pipe(clamp(0, 1), (n) => n * 100, round2);"
+      ]
+    },
+    {
+      "id": "js-retry",
+      "difficulty": "advanced",
+      "lines": [
+        "export async function retry(fn, { tries = 3, delayMs = 200 } = {}) {",
+        "  for (let i = 0; i < tries; i++) {",
+        "    try {",
+        "      return await fn();",
+        "    } catch (err) {",
+        "      if (i === tries - 1) throw err;",
+        "      await new Promise((r) => setTimeout(r, delayMs * 2 ** i));",
+        "    }",
+        "  }",
+        "}"
+      ]
+    }
+  ]
+}

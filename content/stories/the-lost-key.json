@@ -1,0 +1,116 @@
+{
+  "id": "the-lost-key",
+  "title": "The Lost Key",
+  "author": "Typeverse",
+  "license": "CC0-1.0 (original)",
+  "start": "c1-wake",
+  "nodes": [
+    {
+      "id": "c1-wake",
+      "chapter": 1,
+      "text": "You wake in a workshop that smells of warm brass and old paper. Every machine on the bench is finished except one: a small typewriter missing a single key.",
+      "next": "c1-bench"
+    },
+    {
+      "id": "c1-bench",
+      "chapter": 1,
+      "text": "A note is pinned to the lamp in careful handwriting. It says only: the key you need was never lost, it was lent. Follow the sound of it.",
+      "next": "c1-choice"
+    },
+    {
+      "id": "c1-choice",
+      "chapter": 1,
+      "text": "Two doors wait. The cave stairs breathe cold air. The river path hums with insects and evening light.",
+      "choices": [
+        { "type": "LEFT", "label": "Take the cave stairs", "next": "c2-cave" },
+        { "type": "RIGHT", "label": "Follow the river path", "next": "c2-river" }
+      ]
+    },
+    {
+      "id": "c2-cave",
+      "chapter": 2,
+      "text": "The stairs turn twice and open into a hall of still water. Somewhere ahead a key is being pressed, slowly, as if someone is learning a word they do not know yet.",
+      "flag": "cave",
+      "next": "c2-chase"
+    },
+    {
+      "id": "c2-river",
+      "chapter": 2,
+      "text": "The river path runs under low branches. On a flat stone someone has laid out four keycaps in a row, spelling nothing, waiting for a fifth.",
+      "flag": "river",
+      "next": "c2-chase"
+    },
+    {
+      "id": "c2-chase",
+      "chapter": 2,
+      "text": "A shape moves ahead of you, quick and careful. Type cleanly and you will keep up with it. Stumble and it will be gone before the next turn.",
+      "gate": { "minAccuracy": 0.92, "pass": "c3-caught", "fail": "c3-lost" }
+    },
+    {
+      "id": "c3-caught",
+      "chapter": 3,
+      "text": "You catch up at a stone arch. The shape is a girl no older than the workshop itself, holding a single blue keycap as though it were a bird.",
+      "flag": "caught",
+      "next": "c3-talk"
+    },
+    {
+      "id": "c3-lost",
+      "chapter": 3,
+      "text": "The sound fades and you are alone with the echo of your own footsteps. But the path only goes one way, and patience is also a kind of speed.",
+      "next": "c3-talk"
+    },
+    {
+      "id": "c3-talk",
+      "chapter": 3,
+      "text": "She says the key was lent to her so she could finish one sentence, and she has been trying to finish it for a very long time. The sentence is short. The courage is not.",
+      "next": "c3-choice"
+    },
+    {
+      "id": "c3-choice",
+      "chapter": 3,
+      "text": "You can offer to type the sentence with her, or wait in the quiet until she is ready on her own.",
+      "choices": [
+        { "type": "HELP", "label": "Type it together", "next": "c4-together" },
+        { "type": "WAIT", "label": "Wait with her", "next": "c4-wait" }
+      ]
+    },
+    {
+      "id": "c4-together",
+      "chapter": 4,
+      "text": "You set your hands beside hers. The words come out crooked at first, then even, then easy. The workshop lamp, far above you both, flickers once in answer.",
+      "flag": "together",
+      "next": "c4-test"
+    },
+    {
+      "id": "c4-wait",
+      "chapter": 4,
+      "text": "You sit down on the cold stone and say nothing at all. After a while she begins, one letter at a time, and you understand that waiting was the help she wanted.",
+      "flag": "waited",
+      "next": "c4-test"
+    },
+    {
+      "id": "c4-test",
+      "chapter": 4,
+      "text": "The arch begins to close. One clean line is all that stands between the two of you and the stairs back up to the workshop bench.",
+      "gate": { "minAccuracy": 0.95, "pass": "c5-return", "fail": "c5-slow" }
+    },
+    {
+      "id": "c5-return",
+      "chapter": 5,
+      "text": "You reach the workshop with the key still warm. It drops into the empty slot with a sound like a small door closing in a house where everyone is home.",
+      "next": "c5-end"
+    },
+    {
+      "id": "c5-slow",
+      "chapter": 5,
+      "text": "You arrive late, dusty, and laughing. The key fits anyway. Nothing in the workshop was ever in a hurry except you.",
+      "next": "c5-end"
+    },
+    {
+      "id": "c5-end",
+      "chapter": 5,
+      "text": "The typewriter prints one line and stops: a lent key is the only kind worth having. Then it waits, politely, for whatever you want to say next.",
+      "next": ""
+    }
+  ]
+}

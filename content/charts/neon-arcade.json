@@ -1,0 +1,489 @@
+{
+  "id": "neon-arcade",
+  "title": "Neon Arcade",
+  "bpm": 132,
+  "offsetMs": 1500,
+  "license": "CC0-1.0 (original chart, synthesized backing)",
+  "notes": [
+    {
+      "beat": 0.0,
+      "char": "t"
+    },
+    {
+      "beat": 0.5,
+      "char": "y"
+    },
+    {
+      "beat": 1.0,
+      "char": "p"
+    },
+    {
+      "beat": 1.5,
+      "char": "e"
+    },
+    {
+      "beat": 2.0,
+      "char": "v"
+    },
+    {
+      "beat": 2.5,
+      "char": "e"
+    },
+    {
+      "beat": 3.0,
+      "char": "r"
+    },
+    {
+      "beat": 3.5,
+      "char": "s"
+    },
+    {
+      "beat": 4.0,
+      "char": "e"
+    },
+    {
+      "beat": 5.0,
+      "char": "a"
+    },
+    {
+      "beat": 5.5,
+      "char": "r"
+    },
+    {
+      "beat": 6.0,
+      "char": "c"
+    },
+    {
+      "beat": 6.5,
+      "char": "a"
+    },
+    {
+      "beat": 7.0,
+      "char": "d"
+    },
+    {
+      "beat": 7.5,
+      "char": "e"
+    },
+    {
+      "beat": 8.5,
+      "char": "n"
+    },
+    {
+      "beat": 9.0,
+      "char": "i"
+    },
+    {
+      "beat": 9.5,
+      "char": "g"
+    },
+    {
+      "beat": 10.0,
+      "char": "h"
+    },
+    {
+      "beat": 10.5,
+      "char": "t"
+    },
+    {
+      "beat": 12.0,
+      "char": "t"
+    },
+    {
+      "beat": 12.5,
+      "char": "y"
+    },
+    {
+      "beat": 13.0,
+      "char": "p"
+    },
+    {
+      "beat": 13.5,
+      "char": "e"
+    },
+    {
+      "beat": 14.0,
+      "char": "v"
+    },
+    {
+      "beat": 14.5,
+      "char": "e"
+    },
+    {
+      "beat": 15.0,
+      "char": "r"
+    },
+    {
+      "beat": 15.5,
+      "char": "s"
+    },
+    {
+      "beat": 16.0,
+      "char": "e"
+    },
+    {
+      "beat": 17.0,
+      "char": "a"
+    },
+    {
+      "beat": 17.5,
+      "char": "r"
+    },
+    {
+      "beat": 18.0,
+      "char": "c"
+    },
+    {
+      "beat": 18.5,
+      "char": "a"
+    },
+    {
+      "beat": 19.0,
+      "char": "d"
+    },
+    {
+      "beat": 19.5,
+      "char": "e"
+    },
+    {
+      "beat": 20.5,
+      "char": "n"
+    },
+    {
+      "beat": 21.0,
+      "char": "i"
+    },
+    {
+      "beat": 21.5,
+      "char": "g"
+    },
+    {
+      "beat": 22.0,
+      "char": "h"
+    },
+    {
+      "beat": 22.5,
+      "char": "t"
+    },
+    {
+      "beat": 24.0,
+      "char": "t"
+    },
+    {
+      "beat": 24.5,
+      "char": "y"
+    },
+    {
+      "beat": 25.0,
+      "char": "p"
+    },
+    {
+      "beat": 25.5,
+      "char": "e"
+    },
+    {
+      "beat": 26.0,
+      "char": "v"
+    },
+    {
+      "beat": 26.5,
+      "char": "e"
+    },
+    {
+      "beat": 27.0,
+      "char": "r"
+    },
+    {
+      "beat": 27.5,
+      "char": "s"
+    },
+    {
+      "beat": 28.0,
+      "char": "e"
+    },
+    {
+      "beat": 29.0,
+      "char": "a"
+    },
+    {
+      "beat": 29.5,
+      "char": "r"
+    },
+    {
+      "beat": 30.0,
+      "char": "c"
+    },
+    {
+      "beat": 30.5,
+      "char": "a"
+    },
+    {
+      "beat": 31.0,
+      "char": "d"
+    },
+    {
+      "beat": 31.5,
+      "char": "e"
+    },
+    {
+      "beat": 32.5,
+      "char": "n"
+    },
+    {
+      "beat": 33.0,
+      "char": "i"
+    },
+    {
+      "beat": 33.5,
+      "char": "g"
+    },
+    {
+      "beat": 34.0,
+      "char": "h"
+    },
+    {
+      "beat": 34.5,
+      "char": "t"
+    },
+    {
+      "beat": 36.0,
+      "char": "t"
+    },
+    {
+      "beat": 36.5,
+      "char": "y"
+    },
+    {
+      "beat": 37.0,
+      "char": "p"
+    },
+    {
+      "beat": 37.5,
+      "char": "e"
+    },
+    {
+      "beat": 38.0,
+      "char": "v"
+    },
+    {
+      "beat": 38.5,
+      "char": "e"
+    },
+    {
+      "beat": 39.0,
+      "char": "r"
+    },
+    {
+      "beat": 39.5,
+      "char": "s"
+    },
+    {
+      "beat": 40.0,
+      "char": "e"
+    },
+    {
+      "beat": 41.0,
+      "char": "a"
+    },
+    {
+      "beat": 41.5,
+      "char": "r"
+    },
+    {
+      "beat": 42.0,
+      "char": "c"
+    },
+    {
+      "beat": 42.5,
+      "char": "a"
+    },
+    {
+      "beat": 43.0,
+      "char": "d"
+    },
+    {
+      "beat": 43.5,
+      "char": "e"
+    },
+    {
+      "beat": 44.5,
+      "char": "n"
+    },
+    {
+      "beat": 45.0,
+      "char": "i"
+    },
+    {
+      "beat": 45.5,
+      "char": "g"
+    },
+    {
+      "beat": 46.0,
+      "char": "h"
+    },
+    {
+      "beat": 46.5,
+      "char": "t"
+    },
+    {
+      "beat": 48.0,
+      "char": "t"
+    },
+    {
+      "beat": 48.5,
+      "char": "y"
+    },
+    {
+      "beat": 49.0,
+      "char": "p"
+    },
+    {
+      "beat": 49.5,
+      "char": "e"
+    },
+    {
+      "beat": 50.0,
+      "char": "v"
+    },
+    {
+      "beat": 50.5,
+      "char": "e"
+    },
+    {
+      "beat": 51.0,
+      "char": "r"
+    },
+    {
+      "beat": 51.5,
+      "char": "s"
+    },
+    {
+      "beat": 52.0,
+      "char": "e"
+    },
+    {
+      "beat": 53.0,
+      "char": "a"
+    },
+    {
+      "beat": 53.5,
+      "char": "r"
+    },
+    {
+      "beat": 54.0,
+      "char": "c"
+    },
+    {
+      "beat": 54.5,
+      "char": "a"
+    },
+    {
+      "beat": 55.0,
+      "char": "d"
+    },
+    {
+      "beat": 55.5,
+      "char": "e"
+    },
+    {
+      "beat": 56.5,
+      "char": "n"
+    },
+    {
+      "beat": 57.0,
+      "char": "i"
+    },
+    {
+      "beat": 57.5,
+      "char": "g"
+    },
+    {
+      "beat": 58.0,
+      "char": "h"
+    },
+    {
+      "beat": 58.5,
+      "char": "t"
+    },
+    {
+      "beat": 60.0,
+      "char": "t"
+    },
+    {
+      "beat": 60.5,
+      "char": "y"
+    },
+    {
+      "beat": 61.0,
+      "char": "p"
+    },
+    {
+      "beat": 61.5,
+      "char": "e"
+    },
+    {
+      "beat": 62.0,
+      "char": "v"
+    },
+    {
+      "beat": 62.5,
+      "char": "e"
+    },
+    {
+      "beat": 63.0,
+      "char": "r"
+    },
+    {
+      "beat": 63.5,
+      "char": "s"
+    },
+    {
+      "beat": 64.0,
+      "char": "e"
+    },
+    {
+      "beat": 65.0,
+      "char": "a"
+    },
+    {
+      "beat": 65.5,
+      "char": "r"
+    },
+    {
+      "beat": 66.0,
+      "char": "c"
+    },
+    {
+      "beat": 66.5,
+      "char": "a"
+    },
+    {
+      "beat": 67.0,
+      "char": "d"
+    },
+    {
+      "beat": 67.5,
+      "char": "e"
+    },
+    {
+      "beat": 68.5,
+      "char": "n"
+    },
+    {
+      "beat": 69.0,
+      "char": "i"
+    },
+    {
+      "beat": 69.5,
+      "char": "g"
+    },
+    {
+      "beat": 70.0,
+      "char": "h"
+    },
+    {
+      "beat": 70.5,
+      "char": "t"
+    }
+  ]
+}
