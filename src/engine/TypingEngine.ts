@@ -175,7 +175,21 @@ export class TypingEngine {
     const typed = this.norm(char);
     const locked = this.locked;
 
-    if (locked) return this.typeInto(locked, char, typed, t);
+    if (locked) {
+      const expected = locked.text[locked.typed];
+      const other =
+        expected !== undefined && this.norm(expected) !== typed
+          ? this.findCandidate(typed, locked)
+          : null;
+      if (!other) return this.typeInto(locked, char, typed, t);
+      // Another target shares the typed prefix and fits this key: move the lock there.
+      other.typed = locked.typed;
+      locked.typed = 0;
+      this.lockedId = other.id;
+      this.bus.emit('targetReleased', { id: locked.id });
+      this.bus.emit('targetLocked', { id: other.id, text: other.text });
+      return this.typeInto(other, char, typed, t);
+    }
 
     const candidate = this.findCandidate(typed);
     if (!candidate) {
@@ -245,15 +259,29 @@ export class TypingEngine {
     this.bus.emit('charWrong', { expected, got, t });
   }
 
-  /** Highest-priority target whose first character matches. */
-  private findCandidate(typed: string): Target | null {
+  /**
+   * Highest-priority target whose next character is `typed`. With `from`, only
+   * targets that share `from`'s typed prefix count (retargeting); otherwise the
+   * first character is matched.
+   */
+  private findCandidate(typed: string, from: Target | null = null): Target | null {
+    const n = from?.typed ?? 0;
     let best: Target | null = null;
     for (const target of this.targets.values()) {
-      const first = target.text[0];
-      if (first === undefined || this.norm(first) !== typed) continue;
+      if (target === from) continue;
+      const next = target.text[n];
+      if (next === undefined || this.norm(next) !== typed) continue;
+      if (from && !this.sharesPrefix(target, from, n)) continue;
       if (!best || target.priority > best.priority) best = target;
     }
     return best;
+  }
+
+  private sharesPrefix(a: Target, b: Target, n: number): boolean {
+    for (let i = 0; i < n; i++) {
+      if (this.norm(a.text[i] as string) !== this.norm(b.text[i] as string)) return false;
+    }
+    return true;
   }
 
   private norm(char: string): string {

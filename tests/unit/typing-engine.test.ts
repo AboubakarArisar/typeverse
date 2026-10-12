@@ -35,6 +35,32 @@ describe('TypingEngine targets and locking (FR-ENG-02, FR-ENG-03)', () => {
     expect(engine.locked?.typed).toBe(1);
   });
 
+  it('moves the lock to another target that shares the typed prefix', () => {
+    const engine = new TypingEngine();
+    const cat = engine.addTarget('cat', 10);
+    engine.addTarget('car', 5);
+
+    engine.type('c');
+    engine.type('a');
+    const outcome = engine.type('r');
+
+    expect(outcome.kind).toBe('complete');
+    expect(engine.score).toBe(30);
+    expect(engine.getTarget(cat.id)?.typed).toBe(0);
+    expect(engine.locked).toBeNull();
+  });
+
+  it('retargets to a word with the same first letter after one is finished', () => {
+    const engine = new TypingEngine();
+    engine.addTarget('scatter', 10);
+    engine.addTarget('sun', 5);
+
+    typeAll(engine, 'sun');
+
+    expect(engine.activeTargets.map((t) => t.text)).toEqual(['scatter']);
+    expect(engine.metrics.snapshot(1000).accuracy).toBe(1);
+  });
+
   it('releases the lock and clears partial progress on Escape', () => {
     const engine = new TypingEngine();
     const target = engine.addTarget('cat');
