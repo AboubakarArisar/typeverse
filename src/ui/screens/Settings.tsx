@@ -175,7 +175,6 @@ export function SettingsScreen(): JSX.Element {
             />
             <span>
               {t('settings.kidMode')}
-              <br />
               <small class="muted">{t('settings.kidModeHint')}</small>
             </span>
           </label>
@@ -183,29 +182,31 @@ export function SettingsScreen(): JSX.Element {
 
         <Panel class="stack">
           <h3>{t('settings.data')}</h3>
-          <KeycapButton variant="secondary" onClick={() => void exportSave()}>
+          <KeycapButton variant="secondary" full onClick={() => void exportSave()}>
             {t('settings.export')}
           </KeycapButton>
-          <label class="field">
-            <span class="field__label">{t('settings.import')}</span>
-            <input
-              ref={fileRef}
-              type="file"
-              accept="application/json"
-              onChange={(e) => void importSave(e)}
-            />
-          </label>
+          {/* Native file input stays hidden; the keycap opens it (DESIGN_SYSTEM: everything clickable is a keycap). */}
+          <input
+            ref={fileRef}
+            type="file"
+            accept="application/json"
+            hidden
+            onChange={(e) => void importSave(e)}
+          />
+          <KeycapButton variant="secondary" full onClick={() => fileRef.current?.click()}>
+            {t('settings.import')}
+          </KeycapButton>
           {confirming ? (
-            <div class="row">
-              <KeycapButton variant="danger" onClick={() => void reset()}>
+            <div class="stack">
+              <KeycapButton variant="danger" full onClick={() => void reset()}>
                 {t('settings.resetConfirm')}
               </KeycapButton>
-              <KeycapButton variant="secondary" onClick={() => setConfirming(false)}>
+              <KeycapButton variant="secondary" full onClick={() => setConfirming(false)}>
                 {t('nav.back')}
               </KeycapButton>
             </div>
           ) : (
-            <KeycapButton variant="danger" onClick={() => setConfirming(true)}>
+            <KeycapButton variant="danger" full onClick={() => setConfirming(true)}>
               {t('settings.reset')}
             </KeycapButton>
           )}

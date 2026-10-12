@@ -631,10 +631,15 @@ p {
 
 /* ---------- settings ---------- */
 
+/* Spacing between fields comes from the parent .stack gap. */
 .field {
   display: grid;
   gap: var(--space-2);
-  margin-block-end: var(--space-3);
+  min-inline-size: 0;
+}
+
+.panel > h3 {
+  margin: 0;
 }
 
 .field__label {
@@ -645,9 +650,9 @@ p {
   color: var(--ink-muted);
 }
 
-.field select,
-.field input[type='range'],
-.field input[type='file'] {
+.field select {
+  inline-size: 100%;
+  min-inline-size: 0;
   font: inherit;
   padding: var(--space-2);
   border: 2px solid var(--line);
@@ -656,17 +661,33 @@ p {
   color: var(--ink);
 }
 
+.field input[type='range'] {
+  inline-size: 100%;
+  margin: 0;
+  accent-color: var(--key-blue);
+}
+
+.field__label .mono {
+  color: var(--ink);
+}
+
 .switch {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-3);
   cursor: pointer;
 }
 
 .switch input {
+  flex: none;
   inline-size: 20px;
   block-size: 20px;
+  margin: 2px 0 0;
   accent-color: var(--key-blue);
+}
+
+.switch small {
+  display: block;
 }
 
 /* ---------- toast ---------- */
