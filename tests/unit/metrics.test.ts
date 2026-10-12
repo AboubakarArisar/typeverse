@@ -24,6 +24,13 @@ describe('MetricsCalculator (FR-ENG-04)', () => {
     expect(snapshot.accuracy).toBe(1);
   });
 
+  it('uses the play duration even when keystroke timestamps come from a later clock', () => {
+    const m = new MetricsCalculator();
+    // Keys stamped with performance.now() long after page load; snapshot gets game time.
+    for (let i = 0; i < 50; i++) m.record('a', true, 300_000 + i * 1000);
+    expect(m.snapshot(60_000).wpm).toBe(10);
+  });
+
   it('separates raw WPM from net WPM when there are errors', () => {
     const m = new MetricsCalculator();
     for (let i = 0; i < 10; i++) m.record('a', i % 2 === 0, i * 100);

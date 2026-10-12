@@ -52,12 +52,9 @@ export class MetricsCalculator {
     if (this.typed > 0) this.typed--;
   }
 
-  elapsedMs(now: number): number {
-    return this.startT === 0 ? 0 : Math.max(0, now - this.startT);
-  }
-
-  snapshot(now: number): Metrics {
-    const minutes = this.elapsedMs(now) / 60_000;
+  /** `durationMs` is play time from the caller's clock, not a keystroke timestamp. */
+  snapshot(durationMs: number): Metrics {
+    const minutes = Math.max(0, durationMs) / 60_000;
     const wpm = minutes > 0 ? this.correct / CHARS_PER_WORD / minutes : 0;
     const rawWpm = minutes > 0 ? this.typed / CHARS_PER_WORD / minutes : 0;
     return {
