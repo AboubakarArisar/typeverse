@@ -67,6 +67,17 @@ export function App(): JSX.Element {
         </Suspense>
       </main>
 
+      <footer class="footer">
+        {t('footer.madeWith')}{' '}
+        <Keycap color="orange" size={32} tilt={-8} decorative>
+          {'♥'}
+        </Keycap>
+        <span class="visually-hidden">{t('footer.love')}</span> {t('footer.by')}{' '}
+        <a href="https://github.com/AboubakarArisar" target="_blank" rel="noopener noreferrer">
+          Abou Bakar
+        </a>
+      </footer>
+
       <Toasts />
     </div>
   );

@@ -56,6 +56,9 @@ export const en: Record<string, string> = {
   'play.start': 'Type to start',
   'play.pauseHint': 'Escape to pause',
   'play.loading': 'Loading mode...',
+  'footer.madeWith': 'Made with',
+  'footer.love': 'love',
+  'footer.by': 'by',
 
   'pause.title': 'Paused',
   'pause.resume': 'Resume',
