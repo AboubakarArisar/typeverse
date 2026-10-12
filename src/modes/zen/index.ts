@@ -16,8 +16,9 @@ interface Ripple {
 
 const RIPPLE_MS = 1400;
 const RIPPLE_SPEED = 90;
-/** Soft pentatonic tones so every keystroke is pleasant. */
-const TONES = ['C4', 'D4', 'F4', 'G4', 'A4', 'C5'];
+/** Keystroke melody range: indexes into the pentatonic scale (E4..E5). */
+const STEP_MIN = 2;
+const STEP_MAX = 7;
 
 /** Zen Mode (FR-ZM-01): endless calm passages, no score on screen, ripples and ambience. */
 class Zen extends BaseMode {
@@ -30,7 +31,7 @@ class Zen extends BaseMode {
   private ripples!: ObjectPool<Ripple>;
   private live: Ripple[] = [];
   private lines = 0;
-  private toneIndex = 0;
+  private toneStep = 4;
   private resizeObserver: ResizeObserver | null = null;
 
   protected async onInit(): Promise<void> {
@@ -55,7 +56,7 @@ class Zen extends BaseMode {
 
   protected onStart(): void {
     this.nextLine();
-    this.ctx.audio.music('C3');
+    this.ctx.audio.ambient();
   }
 
   protected onUpdate(dt: number): void {
@@ -91,8 +92,10 @@ class Zen extends BaseMode {
     if (outcome.kind === 'ignored' || outcome.kind === 'released') return;
 
     if (outcome.kind !== 'wrong') {
-      this.ctx.audio.note(TONES[this.toneIndex % TONES.length] as string, 0.5, 'sine');
-      this.toneIndex++;
+      // Wander up or down the scale by small steps so typing sounds like a melody.
+      this.ctx.audio.chime(this.toneStep);
+      const step = this.toneStep + (this.ctx.rng.int(-2, 2) || 1);
+      this.toneStep = Math.min(STEP_MAX, Math.max(STEP_MIN, step));
       this.addRipple();
     }
 

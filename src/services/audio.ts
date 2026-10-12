@@ -83,6 +83,32 @@ export const SOUND_PACKS: SoundPack[] = [
 /** The T-Y-P-E arpeggio played on level up. */
 const LEVEL_UP_NOTES = [523.25, 659.25, 783.99, 1046.5];
 
+/**
+ * Zen chord loop, in semitones above C3: Cmaj7, Am7, Fmaj7, G6.
+ * Every voicing stays in C major, so any pentatonic melody note fits over it.
+ */
+const ZEN_CHORDS = [
+  [0, 7, 11, 16],
+  [-3, 4, 7, 12],
+  [-7, 0, 4, 9],
+  [-5, 2, 4, 11],
+];
+const ZEN_CHORD_SEC = 8;
+const ZEN_RELEASE_SEC = 4;
+/** C major pentatonic from C4 upward, in semitones above C4. */
+export const PENTATONIC = [0, 2, 4, 7, 9, 12, 14, 16, 19, 21];
+const C3 = 130.81;
+const C4 = 261.63;
+const PAD_VOICES: readonly (readonly [OscillatorType, number])[] = [
+  ['sine', -5],
+  ['triangle', 5],
+];
+/** [frequency multiple, level] */
+const BELL_PARTIALS: readonly (readonly [number, number])[] = [
+  [1, 1],
+  [2, 0.15],
+];
+
 const SEMITONE = 2 ** (1 / 12);
 const A4 = 440;
 const NOTE_INDEX: Record<string, number> = {
@@ -115,7 +141,11 @@ export class AudioService {
   private master: GainNode | null = null;
   private sfxGain: GainNode | null = null;
   private musicGain: GainNode | null = null;
-  private musicNodes: OscillatorNode[] = [];
+  private musicNodes = new Set<OscillatorNode>();
+  private echo: AudioNode | null = null;
+  private ambientTimer = 0;
+  private nextChordAt = 0;
+  private chordIndex = 0;
   private noiseBuffer: AudioBuffer | null = null;
 
   get pack(): SoundPack {
@@ -145,6 +175,7 @@ export class AudioService {
     this.master = master;
     this.sfxGain = sfx;
     this.musicGain = music;
+    this.echo = createEcho(ctx, master);
     this.applyVolumes();
   }
 
@@ -187,11 +218,47 @@ export class AudioService {
       gain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + 3);
       osc.connect(gain).connect(bus);
       osc.start();
-      this.musicNodes.push(osc);
+      this.track(osc);
+    }
+  }
+
+  /**
+   * Zen ambience: a slow Cmaj7-Am7-Fmaj7-G6 loop of soft filtered pads with a
+   * sparse, quiet bell melody. Scheduled just ahead of the audio clock, so it
+   * freezes with the context on pause.
+   */
+  ambient(): void {
+    this.stopMusic();
+    const ctx = this.ctx;
+    if (!ctx) return;
+    this.chordIndex = 0;
+    this.nextChordAt = ctx.currentTime + 0.1;
+    const schedule = (): void => {
+      const now = this.ctx?.currentTime ?? Infinity;
+      while (this.nextChordAt < now + 1) {
+        const chord = ZEN_CHORDS[this.chordIndex % ZEN_CHORDS.length] as number[];
+        this.padChord(chord, this.nextChordAt);
+        this.melody(this.nextChordAt);
+        this.chordIndex++;
+        this.nextChordAt += ZEN_CHORD_SEC;
+      }
+    };
+    schedule();
+    this.ambientTimer = window.setInterval(schedule, 500);
+  }
+
+  /** Soft bell for Zen keystrokes: `step` indexes C major pentatonic from C4. */
+  chime(step: number): void {
+    const n = PENTATONIC.length;
+    const semis = PENTATONIC[((step % n) + n) % n] as number;
+    if (this.ctx && this.sfxGain) {
+      this.bell(C4 * SEMITONE ** semis, this.ctx.currentTime, 0.14, this.sfxGain);
     }
   }
 
   stopMusic(): void {
+    window.clearInterval(this.ambientTimer);
+    this.ambientTimer = 0;
     for (const osc of this.musicNodes) {
       try {
         osc.stop();
@@ -199,7 +266,7 @@ export class AudioService {
         // already stopped
       }
     }
-    this.musicNodes.length = 0;
+    this.musicNodes.clear();
   }
 
   suspend(): void {
@@ -214,6 +281,77 @@ export class AudioService {
     this.stopMusic();
     void this.ctx?.close();
     this.ctx = null;
+  }
+
+  private track(osc: OscillatorNode): void {
+    this.musicNodes.add(osc);
+    osc.onended = () => this.musicNodes.delete(osc);
+  }
+
+  /** One chord: each note is two slightly detuned voices through a dark low-pass. */
+  private padChord(semis: number[], at: number): void {
+    const ctx = this.ctx;
+    const bus = this.musicGain;
+    if (!ctx || !bus) return;
+    const end = at + ZEN_CHORD_SEC + ZEN_RELEASE_SEC;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 900;
+    filter.Q.value = 0.3;
+    const env = ctx.createGain();
+    env.gain.setValueAtTime(0.0001, at);
+    env.gain.exponentialRampToValueAtTime(0.07, at + 3);
+    env.gain.setValueAtTime(0.07, at + ZEN_CHORD_SEC);
+    env.gain.exponentialRampToValueAtTime(0.0001, end);
+    filter.connect(env).connect(bus);
+    for (const semi of semis) {
+      for (const [wave, cents] of PAD_VOICES) {
+        const osc = ctx.createOscillator();
+        osc.type = wave;
+        osc.frequency.value = C3 * SEMITONE ** semi;
+        osc.detune.value = cents;
+        osc.connect(filter);
+        osc.start(at);
+        osc.stop(end);
+        this.track(osc);
+      }
+    }
+  }
+
+  /** A few sparse, quiet bell notes over each chord, wandering by small steps. */
+  private melody(at: number): void {
+    const bus = this.musicGain;
+    if (!bus) return;
+    let step = 4 + Math.floor(Math.random() * 3);
+    for (let beat = 0; beat < ZEN_CHORD_SEC; beat += 2) {
+      if (Math.random() < 0.45) continue;
+      step = Math.max(0, Math.min(PENTATONIC.length - 1, step + Math.floor(Math.random() * 5) - 2));
+      const freq = C4 * SEMITONE ** (PENTATONIC[step] as number);
+      this.bell(freq, at + beat + Math.random() * 0.3, 0.05, bus);
+    }
+  }
+
+  /** Bell tone: sine plus a faint octave, quick soft attack, long fade, sent to the echo. */
+  private bell(freq: number, at: number, peak: number, bus: AudioNode): void {
+    const ctx = this.ctx;
+    if (!ctx || settings.value.masterVolume === 0) return;
+    const decay = 2.2;
+    const env = ctx.createGain();
+    env.gain.setValueAtTime(0.0001, at);
+    env.gain.exponentialRampToValueAtTime(peak, at + 0.02);
+    env.gain.exponentialRampToValueAtTime(0.0001, at + decay);
+    env.connect(bus);
+    if (this.echo) env.connect(this.echo);
+    for (const [mult, level] of BELL_PARTIALS) {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq * mult;
+      gain.gain.value = level;
+      osc.connect(gain).connect(env);
+      osc.start(at);
+      osc.stop(at + decay + 0.05);
+    }
   }
 
   private blip(
@@ -266,6 +404,22 @@ export class AudioService {
     src.start(at);
     src.stop(at + decay + 0.02);
   }
+}
+
+/** Soft feedback delay used as a cheap reverb tail. Returns its input node. */
+function createEcho(ctx: AudioContext, out: AudioNode): AudioNode {
+  const input = ctx.createGain();
+  input.gain.value = 0.35;
+  const delay = ctx.createDelay(1);
+  delay.delayTime.value = 0.42;
+  const feedback = ctx.createGain();
+  feedback.gain.value = 0.4;
+  const tone = ctx.createBiquadFilter();
+  tone.type = 'lowpass';
+  tone.frequency.value = 2200;
+  input.connect(delay).connect(tone).connect(feedback).connect(delay);
+  tone.connect(out);
+  return input;
 }
 
 export const audio = new AudioService();
