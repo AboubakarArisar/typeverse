@@ -126,8 +126,14 @@ export const en: Record<string, string> = {
 
   'onboarding.title': 'Quick typing check',
   'onboarding.body': 'Type for 20 seconds so Typeverse can pick a starting difficulty.',
-  'onboarding.start': 'Start check',
-  'onboarding.skip': 'Skip',
+  'onboarding.start': 'Start typing',
+  'onboarding.skip': 'Skip to arcade',
+  'onboarding.eyebrow': 'Type · Play · Improve',
+  'onboarding.headline': 'Turn your typing into a',
+  'onboarding.headlineAccent': 'game',
+  'onboarding.subtitle':
+    'Build your speed, sharpen your accuracy and enjoy the journey, one keystroke at a time.',
+  'onboarding.sample': 'Better habits build a brighter future.',
   'onboarding.done': 'You type around {wpm} WPM. Starting on {difficulty}.',
 
   'wordRain.lifeLost': 'Life lost',
