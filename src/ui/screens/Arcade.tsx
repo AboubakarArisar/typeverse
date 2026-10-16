@@ -8,14 +8,12 @@ import { audio } from '@/services/audio';
 import { Bar, Panel, SectionLabel, StatChip } from '@/ui/components/primitives';
 import { ModeTile } from '@/ui/components/ModeTile';
 import { toast } from '@/ui/components/Toast';
-import { Onboarding } from './Onboarding';
 
 const COLUMNS = 4;
 
 /** Main menu: one keycap tile per mode, arrow-key navigation, staggered key drop. */
 export function Arcade(): JSX.Element {
   const [focus, setFocus] = useState(0);
-  const [onboarding, setOnboarding] = useState(!save.value?.profile.onboarded);
   const gridRef = useRef<HTMLDivElement>(null);
   const level = progress.progress();
   const saved = save.value;
@@ -68,8 +66,6 @@ export function Arcade(): JSX.Element {
     audio.play('select');
     navigate({ name: 'play', mode: entry.meta.id });
   };
-
-  if (onboarding) return <Onboarding onDone={() => setOnboarding(false)} />;
 
   return (
     <div class="stack">

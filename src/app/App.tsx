@@ -4,6 +4,7 @@ import { route, navigate } from './router';
 import { t } from '@/services/i18n';
 import { Arcade } from '@/ui/screens/Arcade';
 import { Play } from '@/ui/screens/Play';
+import { Onboarding } from '@/ui/screens/Onboarding';
 import { Toasts } from '@/ui/components/Toast';
 import { Keycap } from '@/ui/components/Keycap';
 import { KeycapButton } from '@/ui/components/KeycapButton';
@@ -32,7 +33,7 @@ export function App(): JSX.Element {
           href="#/"
           onClick={(e) => {
             e.preventDefault();
-            navigate({ name: 'arcade' });
+            navigate({ name: 'home' });
           }}
         >
           <span class="brand__keys">
@@ -59,6 +60,7 @@ export function App(): JSX.Element {
 
       <main class="grow">
         <Suspense fallback={<p class="mono muted">{t('play.loading')}</p>}>
+          {current.name === 'home' ? <Onboarding /> : null}
           {current.name === 'arcade' ? <Arcade /> : null}
           {current.name === 'play' ? <Play mode={current.mode} key={current.mode} /> : null}
           {current.name === 'stats' ? <Stats /> : null}

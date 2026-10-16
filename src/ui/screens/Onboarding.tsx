@@ -8,6 +8,7 @@ import { settings, settingsService } from '@/services/settings';
 import { storage } from '@/services/storage';
 import { save } from '@/services/progress';
 import { t } from '@/services/i18n';
+import { navigate } from '@/app/router';
 import { difficultyForWpm, DIFFICULTIES } from '@/modes/shared/difficulty';
 import { Keycap, type KeycapSize } from '@/ui/components/Keycap';
 import { KeycapButton } from '@/ui/components/KeycapButton';
@@ -16,8 +17,11 @@ import { toast } from '@/ui/components/Toast';
 
 const CHECK_MS = 20_000;
 
-/** First-run typing check: 20 seconds of plain sentences picks a starting difficulty. */
-export function Onboarding({ onDone }: { onDone: () => void }): JSX.Element {
+/**
+ * Landing page. First visit: a 20-second typing check picks a starting difficulty.
+ * Returning players jump straight to the arcade or retake the check.
+ */
+export function Onboarding(): JSX.Element {
   const hostRef = useRef<HTMLDivElement>(null);
   const engineRef = useRef(new TypingEngine());
   const [running, setRunning] = useState(false);
@@ -40,7 +44,7 @@ export function Onboarding({ onDone }: { onDone: () => void }): JSX.Element {
     }
     if (difficulty) await settingsService.update({ difficulty });
     setRunning(false);
-    onDone();
+    navigate({ name: 'arcade' });
     if (difficulty) {
       toast(
         t('onboarding.done', {
@@ -91,6 +95,7 @@ export function Onboarding({ onDone }: { onDone: () => void }): JSX.Element {
     };
   }, [running, pack]);
 
+  const returning = save.value?.profile.onboarded === true;
   const nextKey = running ? (line[typed] ?? '').toLowerCase() : '';
 
   return (
@@ -103,12 +108,29 @@ export function Onboarding({ onDone }: { onDone: () => void }): JSX.Element {
         </h1>
         <p class="hero__lede">{t('onboarding.subtitle')}</p>
         <div class="row">
-          <KeycapButton onClick={() => setRunning(true)} disabled={!pack || running}>
-            {t('onboarding.start')} <span aria-hidden="true">&rarr;</span>
-          </KeycapButton>
-          <KeycapButton variant="secondary" onClick={() => void finish()}>
-            {t('onboarding.skip')}
-          </KeycapButton>
+          {returning ? (
+            <>
+              <KeycapButton onClick={() => navigate({ name: 'arcade' })}>
+                {t('onboarding.play')} <span aria-hidden="true">&rarr;</span>
+              </KeycapButton>
+              <KeycapButton
+                variant="secondary"
+                onClick={() => setRunning(true)}
+                disabled={!pack || running}
+              >
+                {t('onboarding.retake')}
+              </KeycapButton>
+            </>
+          ) : (
+            <>
+              <KeycapButton onClick={() => setRunning(true)} disabled={!pack || running}>
+                {t('onboarding.start')} <span aria-hidden="true">&rarr;</span>
+              </KeycapButton>
+              <KeycapButton variant="secondary" onClick={() => void finish()}>
+                {t('onboarding.skip')}
+              </KeycapButton>
+            </>
+          )}
         </div>
         <p class="muted hero__hint">{t('onboarding.body')}</p>
       </div>

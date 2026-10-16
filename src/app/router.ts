@@ -3,6 +3,7 @@ import type { ModeId } from '@/types';
 import { MODE_ORDER } from '@/modes/registry';
 
 export type Route =
+  | { name: 'home' }
   | { name: 'arcade' }
   | { name: 'play'; mode: ModeId }
   | { name: 'stats' }
@@ -17,10 +18,11 @@ function parse(hash: string): Route {
   if (head === 'play' && tail && (MODE_ORDER as string[]).includes(tail)) {
     return { name: 'play', mode: tail as ModeId };
   }
+  if (head === 'arcade') return { name: 'arcade' };
   if (head === 'stats') return { name: 'stats' };
   if (head === 'settings') return { name: 'settings' };
   if (head === 'kit') return { name: 'kit' };
-  return { name: 'arcade' };
+  return { name: 'home' };
 }
 
 export function navigate(to: Route): void {
@@ -33,6 +35,8 @@ export function toHash(to: Route): string {
   switch (to.name) {
     case 'play':
       return `#/play/${to.mode}`;
+    case 'arcade':
+      return '#/arcade';
     case 'stats':
       return '#/stats';
     case 'settings':

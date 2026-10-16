@@ -37,6 +37,17 @@ test.describe('Onboarding', () => {
   });
 });
 
+test.describe('Landing', () => {
+  test('stays the home page after onboarding and leads to the arcade', async ({ page }) => {
+    await openArcade(page);
+    await expect(page).toHaveURL(/#\/arcade$/);
+    await page.goto('/');
+    await expect(page.getByRole('button', { name: /Play now/ })).toBeVisible();
+    await page.getByRole('button', { name: /Play now/ }).click();
+    await expect(page.locator('.tile')).toHaveCount(8);
+  });
+});
+
 test.describe('Arcade', () => {
   test('shows eight mode tiles and navigates with the keyboard', async ({ page }) => {
     const errors = watchForErrors(page);
@@ -106,7 +117,7 @@ test.describe('Every mode plays', () => {
 
     await expect(page.getByText('Paused')).toBeVisible();
     await page.getByRole('button', { name: 'Quit to arcade' }).click();
-    await expect(page).toHaveURL(/#\/$|#\/?$/);
+    await expect(page).toHaveURL(/#\/arcade$/);
   });
 });
 
