@@ -15,6 +15,9 @@ export const en: Record<string, string> = {
   'arcade.best': 'Best {score}',
   'arcade.noBest': 'Not played yet',
   'arcade.locked': 'Locked until level {level}',
+  'arcade.lockedBadge': 'Locked',
+  'arcade.play': 'Play now',
+  'arcade.relax': 'Relax & type',
   'arcade.hint': 'Arrow keys to move, Enter to play, Escape to go back.',
 
   'mode.word-rain.name': 'Word Rain',

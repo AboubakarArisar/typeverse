@@ -10,6 +10,13 @@
   --key-mint-side: #3fbf93;
   --key-lime: #c6f432;
   --key-lime-side: #8fb51c;
+  /* Arcade accents beyond the logo four (DESIGN_SYSTEM.md section 8) */
+  --key-red: #ff6b5e;
+  --key-red-side: #c8433a;
+  --key-gold: #ffc53d;
+  --key-gold-side: #c9921c;
+  --key-purple: #9d84ff;
+  --key-purple-side: #6b52d6;
 
   /* Neutrals — light theme (default) */
   --bg: #fff4e0;

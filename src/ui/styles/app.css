@@ -365,11 +365,43 @@ p {
   }
 }
 
+/* Arcade card accents: each sets --accent/--accent-side for its art, border and glow. */
+.tile--blue {
+  --accent: var(--key-blue);
+  --accent-side: var(--key-blue-side);
+}
+.tile--orange {
+  --accent: var(--key-orange);
+  --accent-side: var(--key-orange-side);
+}
+.tile--mint {
+  --accent: var(--key-mint);
+  --accent-side: var(--key-mint-side);
+}
+.tile--lime {
+  --accent: var(--key-lime);
+  --accent-side: var(--key-lime-side);
+}
+.tile--red {
+  --accent: var(--key-red);
+  --accent-side: var(--key-red-side);
+}
+.tile--gold {
+  --accent: var(--key-gold);
+  --accent-side: var(--key-gold-side);
+}
+.tile--purple {
+  --accent: var(--key-purple);
+  --accent-side: var(--key-purple-side);
+}
+
 .tile {
-  display: grid;
-  justify-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: var(--space-2);
-  padding: var(--space-4) var(--space-3);
+  padding: var(--space-5) var(--space-3) var(--space-4);
   background: var(--surface);
   border: 2px solid var(--line);
   border-radius: var(--radius-panel);
@@ -382,12 +414,26 @@ p {
   animation-delay: var(--drop-delay, 0ms);
   transition:
     transform var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-fast) var(--ease-out);
+    box-shadow var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+/* Playable cards: accent border and a soft accent glow. */
+.tile--open {
+  border-color: var(--accent);
+  box-shadow:
+    0 var(--depth-1) 0 var(--accent-side),
+    0 0 28px color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
 .tile:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 calc(var(--depth-1) + 3px) 0 var(--line);
+  transform: translateY(-4px);
+}
+
+.tile--open:hover {
+  box-shadow:
+    0 calc(var(--depth-1) + 4px) 0 var(--accent-side),
+    0 0 40px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
 .tile:active {
@@ -398,30 +444,149 @@ p {
 
 .tile--locked {
   cursor: not-allowed;
-  opacity: 0.75;
 }
 
-.tile--locked .keycap {
-  filter: grayscale(1);
-}
-
-.tile__key {
+.tile__art {
   position: relative;
-  display: grid;
-  place-items: center;
-  padding-block-end: var(--space-3);
+  inline-size: min(100%, 200px);
+  margin-block-end: var(--space-1);
+}
+
+/* Accent glow behind the illustration. */
+.tile__art::before {
+  content: '';
+  position: absolute;
+  inset: 8% 18%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--accent) 30%, transparent),
+    transparent
+  );
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.tile--locked .tile__art {
+  opacity: 0.78;
+}
+
+.tile--locked .tile__art::before {
+  opacity: 0.4;
+}
+
+.art {
+  position: relative;
+  display: block;
+  inline-size: 100%;
+  overflow: visible;
+}
+
+.art__key,
+.art__deco {
+  transition: transform var(--dur-base) var(--ease-pop);
+}
+
+.tile:hover .art__key {
+  transform: rotate(-4deg) translateY(-4px);
+  transform-origin: 80px 62px;
+}
+
+.tile:hover .art__deco {
+  transform: scale(1.06);
+  transform-origin: 80px 62px;
+}
+
+.art__side {
+  fill: var(--accent-side);
+}
+.art__face {
+  fill: var(--accent);
+}
+.art__glyph {
+  fill: var(--on-key);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 36px;
+  text-anchor: middle;
+}
+.art__fill {
+  fill: var(--on-key);
+}
+.art__stroke {
+  fill: none;
+  stroke: var(--on-key);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.art__stroke--claw {
+  stroke-width: 5;
+}
+.art__stroke--thin,
+.art__thin {
+  fill: none;
+  stroke: var(--on-key);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.art__gutter {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.art__line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.art__chip {
+  fill: var(--accent-side);
+}
+.art__chip-text {
+  fill: var(--on-key);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  text-anchor: middle;
+}
+.art__ghosts,
+.art__sparkles,
+.art__leaf {
+  fill: var(--accent);
+}
+.art__ghosts {
+  opacity: 0.35;
+}
+
+.tile__badge {
+  position: absolute;
+  inset-block-start: var(--space-3);
+  inset-inline-end: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface-sunk);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--ink-muted);
 }
 
 .tile__lock {
-  position: absolute;
-  inset-block-end: 0;
-  inset-inline-end: 0;
-  font-size: 20px;
+  inline-size: 14px;
+  block-size: 14px;
+  fill: var(--key-gold);
+  color: var(--key-gold);
 }
 
 .tile__name {
   font-weight: 700;
   font-size: var(--fs-h2);
+  line-height: 1.15;
 }
 
 .tile__best,
@@ -432,8 +597,33 @@ p {
 }
 
 .tile__desc {
-  text-transform: none;
-  letter-spacing: 0;
+  max-inline-size: 26ch;
+  line-height: 1.6;
+}
+
+/* Pushes the pill or CTA to the bottom so cards in a row line up. */
+.tile__pill,
+.tile__cta {
+  margin-block-start: auto;
+}
+
+.tile__pill {
+  padding: var(--space-1) var(--space-3);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface-sunk);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--ink-muted);
+}
+
+.tile__cta {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  box-shadow: 0 4px 0 var(--accent-side);
+  color: var(--on-key);
+  font-weight: 700;
 }
 
 @keyframes key-drop {
@@ -997,5 +1187,11 @@ p {
 
   .hero__float {
     scale: 0.7;
+  }
+}
+
+@media (max-width: 520px) {
+  .arcade__grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
